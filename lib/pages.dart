@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_note/providers/googlesignin.dart';
 
 abstract class Page extends StatefulWidget{
   const Page({Key? key}) : super(key: key);
@@ -18,10 +19,9 @@ class _PageState extends State<Page>{
   }
 }
 
-//for all platform types
 class WebPage extends StatefulWidget{
   final String _title = '';
-  const WebPage(thisTitle);
+  const WebPage(thisTitle, {Key? key});
   @override
   State<WebPage> createState() => _WebPageState();
 }
@@ -65,13 +65,14 @@ class SideDrawer extends StatefulWidget{
           children: [
             IconButton(
               icon: const Icon(Icons.login), 
-              onPressed: (){}
-              
-              , )
-            //navigation options dependent on :  (login status)
-
-            //sign out/ log in button
-          
+              onPressed: (){},
+            )
+            //login statud determines 
+            //enabled/disabled option of the routes -> view workouts, change days of week, 
+            //sign out/login button
+            //
+            //use context.watch<GoogleSignInProvider>()._____; 
+            //in place of the ___, include the variable name that will represent the user's boolean login status           
           ],
         ),
       );

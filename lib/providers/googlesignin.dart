@@ -1,6 +1,4 @@
 
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider with ChangeNotifier{
 
-GoogleSignInAccount? _currentUser; //its in the signInHandler...
+GoogleSignInAccount? _currentUser;
 GoogleSignInAccount get getUser => _currentUser!;
 
   // ignore: prefer_final_fields
@@ -33,11 +31,7 @@ GoogleSignInAccount get getUser => _currentUser!;
       // ignore: avoid_print
       print(error.toString());
     }
-      //notify other pages:
       notifyListeners();
-      //the user signed in 
-      //store the account's uid so that the UI could update with the user data
-
   }
 
   Future <void> silentSignInHandler() async{
@@ -48,19 +42,12 @@ GoogleSignInAccount get getUser => _currentUser!;
       // ignore: avoid_print
       print(error);
     }
-
-      //notify other pages:
-      //the user signed in 
-      //store the account's uid so that the UI could update with the user data
-
+    notifyListeners();
   }
 
   Future <void> signOutHandler() async{
     await _googleSignIn.signOut();
     FirebaseAuth.instance.signOut();
-    //notify listeners
+    notifyListeners();
   } 
-  
-
-
 }

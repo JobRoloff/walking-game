@@ -4,7 +4,7 @@ import 'firebase_options.dart';
 
 import 'package:flutter/material.dart';
 
-
+import 'user_screening.dart';
 
 Future<void> main() async {
   
@@ -18,10 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context)=> const WebPage('Home Page'),
+        '/user_screening' :(context) => UserScreeningPage('User Screening Page'),
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WebPage('a page'),
     );
   }
 
