@@ -12,10 +12,10 @@ class Person {
 
   //if the user don't sign in, their stats will not save... unless I use shared preferences as a temporary on device storage
   Person(){
-    initPerson(false);
+    initPerson();
   }
-  void initPerson(bool isNew){
-    isNew == true ? workoutAge = DateTime.now().toString() : setWorkoutAge("k");
+  void initPerson(){
+    // isNew == true ? workoutAge = DateTime.now().toString() : setWorkoutAge("k");
   }
   //array to store their available days to exercise
   //https://pub.dev/documentation/syncfusion_flutter_calendar/latest/calendar/SfCalendar-class.html
@@ -32,6 +32,7 @@ class Person {
     "1-2 years",
     "2+ years",
   ];
+
 
 
 

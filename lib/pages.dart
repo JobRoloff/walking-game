@@ -80,33 +80,3 @@ class SideDrawer extends StatefulWidget{
   }
 
 
-
-class AllNotes extends WebPage {
-  const AllNotes(String title) : super(title);
-
-  // const AllNotes({ Key? key }) : super(key: key);
-
-  @override
-  State<AllNotes> createState() => _AllNotesState();
-}
-
-class _AllNotesState extends State<AllNotes> {
-  int numberNotes = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Column( children:[
-    // ReorderableListView.builder(
-    //   itemCount: numberNotes,
-    //   itemBuilder: , 
-    //   onReorder: (int oldIndex, int newIndex) {  },),
-    FloatingActionButton(onPressed: (){})
-    ]
-
-    );
-    
-  }
-
-  void incNumberNotes(){
-    numberNotes++;
-  }
-}
