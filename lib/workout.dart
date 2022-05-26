@@ -10,16 +10,16 @@ class Workout {
   var split = 'Not Specified By User';
   var commonDeviations = [];
 
-  Workout(this.workoutName, this.agonists, this.antagonists,this.split, this.commonDeviations);
+  Workout(this.workoutName, this.agonists, this.antagonists,this.split, this.commonDeviations){addToSet();}
   
+  void addToSet(){
+    _allWorkouts.add(this);
+  }
 }
 
 //get your db data here? : https://github.com/wrkout/exercises.json/blob/master/README.md
   //name, force, mechanic, 1&2 muscles, 
 
-Workout calveraises = Workout("Calve Raises",[],[],'trip',[]);
-Workout lunges = Workout("Lunges",[],[],'trip',[]);
-Workout squats = Workout("Squats",[],[],'trip',[]);
 
 
 class WorkoutSession extends StatefulWidget {
@@ -43,3 +43,11 @@ class _WorkoutSessionState extends State<WorkoutSession> {
     );
   }
 }
+
+Workout calveraises = Workout("Calve Raises",[],[],'trip',[]);
+Workout lunges = Workout("Lunges",[],[],'trip',[]);
+Workout squats = Workout("Squats",[],[],'trip',[]);
+
+final _allWorkouts = HashSet<Workout>();
+
+get getAllWorkouts => _allWorkouts;

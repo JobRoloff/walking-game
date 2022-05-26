@@ -1,23 +1,10 @@
 
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_note/providers/googlesignin.dart';
+import 'package:flutter_application_note/workout.dart';
 
-abstract class Page extends StatefulWidget{
-  const Page({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _PageState();
-}
-
-class _PageState extends State<Page>{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: const SideDrawer(),
-    );
-  }
-}
 
 class WebPage extends StatefulWidget{
   final String _title = '';
@@ -38,7 +25,9 @@ class _WebPageState extends State<WebPage>{
           ],
         ),
       drawer: const SideDrawer(),
-      body: Center(child: Column(children:  const [
+      body: Center(child: Column(children:   [
+        // ignore: avoid_print
+        Text(getAllWorkouts.length.toString()),
         // TabBar(tabs: tabs)
       ],),),
     );
@@ -79,4 +68,32 @@ class SideDrawer extends StatefulWidget{
     }
   }
 
+//widget counter for reps 
+class CountedListTile extends StatefulWidget {
+  CountedListTile({ Key? key }) : super(key: key);
+  @override
+  State<CountedListTile> createState() => _SetCounterState();
+}
+class _SetCounterState extends State<CountedListTile> {
+  int setsCompleted = 0;
+  List<dynamic> visualTapStatus = [
+    "1",
+    "2",
+    "3",
+    const Icon(Icons.done),
+  ];
 
+  void incrementSetsCompleted(){
+    setState((){
+      setsCompleted++;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: visualTapStatus[setsCompleted],
+      title: const Text("a title"),
+    );
+  }
+
+}
