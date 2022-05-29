@@ -8,7 +8,6 @@ import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 
 import 'providers/googlesignin.dart';
-import 'user_screening.dart';
 
 Future<void> main() async {
   
@@ -31,8 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context)=> const WebPage('Home Page'),
-        '/user_screening' :(context) => UserScreeningPage('User Screening Page'),
+        '/': (context)=> WebPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

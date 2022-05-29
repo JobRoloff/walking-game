@@ -5,20 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_note/providers/googlesignin.dart';
 import 'package:flutter_application_note/workout.dart';
 
+LinkedHashSet<String> pageoption = LinkedHashSet();
+
+// {
+//   "Map",
+//   "Store",
+//   "Manage"
+// }
 
 class WebPage extends StatefulWidget{
-  final String _title = '';
-  const WebPage(thisTitle, {Key? key});
   @override
   State<WebPage> createState() => _WebPageState();
 }
 class _WebPageState extends State<WebPage>{
+  // String _title = PageOption[_curentPage];
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: 
         AppBar(
-          title: Text(widget._title),
+          // title: Text(_title),
           actions: const [
             // logo
             // 2 icon button sets of 3 (premium, sign in, create account) or (notification, streak, profile)
