@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final ColorScheme colorScheme1 = ColorScheme(
-    brightness: Brightness.dark,
-    primary: brown500,
-    onPrimary: onPrimary,
-    secondary: secondary,
-    onSecondary: onSecondary,
-    error: error,
-    onError: onError,
-    background: background,
-    onBackground: onBackground,
-    surface: surface,
-    onSurface: onSurface);
+// final ColorScheme colorScheme1 = ColorScheme(
+//     brightness: Brightness.dark,
+//     primary: brown500,
+//     onPrimary: onPrimary,
+//     secondary: secondary,
+//     onSecondary: onSecondary,
+//     error: error,
+//     onError: onError,
+//     background: background,
+//     onBackground: onBackground,
+//     surface: surface,
+//     onSurface: onSurface);
 
 //Primary
 var brown50 = const Color(0xFFEFEBE9);
