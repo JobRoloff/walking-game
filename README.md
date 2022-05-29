@@ -1,6 +1,9 @@
 # simpletrainingapp
 <h1>Style</h1>
 <ul>
+  
+  <li>M3 -> https://m3.material.io/
+  
 <li>Custom Theme (General) -> https://api.flutter.dev/flutter/material/ThemeData-class.html
 <li>Custom Theme (Text) -> https://api.flutter.dev/flutter/material/TextTheme-class.html
 <li>Custom Theme (Colors) -> https://api.flutter.dev/flutter/material/ColorScheme-class.html
