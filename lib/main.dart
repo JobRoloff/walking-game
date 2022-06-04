@@ -3,6 +3,7 @@ import 'dart:collection';
 
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application_note/models/Token.dart';
 import 'package:provider/provider.dart';
 import 'characters.dart';
 import 'firebase_options.dart';
@@ -53,13 +54,15 @@ class _CharacterPageState extends State<CharacterPage> {
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Text("Characters:", style: TextStyle(color: Color(0xFF9a4521)),),
-          Text(getEnemySet.length.toString()),
-        //   Row(
-        //     children: enemySet.forEach((element) => return chil[
-        //     ]
-        //   )
+          const Text("Characters:"),
+          Text(
+            getEnemySet.length.toString(),
+            style: TextStyle(
+                color : Color(0xFF + int.parse("9a4521"))
+            ),
+          )
         ]
     );
   }
+
 }
