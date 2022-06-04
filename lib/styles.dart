@@ -15,6 +15,11 @@ import 'package:flutter/material.dart';
 //     onSurface: onSurface);
 
 //Primary
+var darkBackground = const Color(0xFF201A18);
+var darkBackground1 = darkBackground.withOpacity(0.05);
+var darkBackground2 = darkBackground.withOpacity(0.08);
+var onDarkBackground = const Color(0xFFEDE0DC);
+
 var brown50 = const Color(0xFFEFEBE9);
 var brown100 = const Color(0xFFD7CCC8);
 var brown200 = const Color(0xFFBCAAA4);
