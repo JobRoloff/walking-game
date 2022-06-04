@@ -17,16 +17,16 @@ import 'package:flutter/material.dart';
 
 
 //search list of maps for a key. return the key's value
-// int getToken (String inputKey){
-//   int listIndex = rawMaterialTokens.indexWhere((aMap) => aMap.containsKey(inputKey));
-//   String rawToken = rawMaterialTokens[listIndex]["value"];
-//   String
-//   return convertedToken;
-// }
+int getToken (String tokenName){
+  int listIndex = MaterialTokens.indexWhere((aMap) => aMap.containsKey("id"));
+  String tokenId = MaterialTokens[listIndex]["value"];
+  String finalTokenId = tokenId.substring(1);
+  return int.parse("0xFF" + finalTokenId);
+}
 
 
 
-List<Map<String, dynamic>> rawMaterialTokens =
+List<Map<String, dynamic>> MaterialTokens =
 [
   {
     "class": "token",

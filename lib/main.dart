@@ -1,7 +1,7 @@
 
 import 'dart:collection';
 
-
+import 'package:string_to_hex/string_to_hex.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_note/models/Token.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +58,8 @@ class _CharacterPageState extends State<CharacterPage> {
           Text(
             getEnemySet.length.toString(),
             style: TextStyle(
-                color : Color(0xFF + int.parse("9a4521"))
+                // color : Color(int.parse("0xFF"+"9a4521")),
+              color: Color(getToken("md.sys.color.primary.light"))
             ),
           )
         ]
