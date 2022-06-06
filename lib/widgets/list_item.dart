@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 
 /////////////////////////////////////////////////////
 
-class LoadBar extends StatefulWidget {
+class LoadBar extends StatelessWidget {
   const LoadBar({Key? key}) : super(key: key);
 
   @override
-  State<LoadBar> createState() => _LoadBarState();
-}
-
-class _LoadBarState extends State<LoadBar> {
-  @override
   Widget build(BuildContext context) {
     return Container();
-    //what widget could serve best as a rounded rectangle???
   }
 }
+
 
 
 
@@ -57,7 +52,7 @@ class _ItemListState extends State<ItemList> {
           children:[
             Text(e.label),
             Text(e.units),
-            LoadBar()
+            const LoadBar()
             ],
         )
         )

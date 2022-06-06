@@ -1,30 +1,12 @@
 
-import 'package:flutter/material.dart';
-
-// class MaterialToken {
-//   String id;
-//   String value;
-//
-//   MaterialToken( { required this.id, required this.value});
-//
-//   factory MaterialToken.fromJson(Map<String, dynamic> json){
-//     return MaterialToken(
-//         id: json[],
-//         value: ''
-//     );
-//   }
-// }
-
 
 //search list of maps for a key. return the key's value
 int getToken (String tokenName){
-  int listIndex = materialTokens.indexWhere((aMap) => aMap.containsValue(tokenName));
-  String tokenId = materialTokens[listIndex]["value"];
-  String finalTokenId = tokenId.substring(1);
-  return int.parse("0xFF" + finalTokenId);
+  int listIndex = materialTokens.indexWhere((aMap) => aMap.containsValue("md.sys.color." + tokenName + ".dark"));
+  String colorValue = materialTokens[listIndex]["value"];
+  String formattedColorValue = colorValue.substring(1);
+  return int.parse("0xFF" + formattedColorValue);
 }
-
-
 
 List<Map<String, dynamic>> materialTokens =
 [

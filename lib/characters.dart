@@ -1,5 +1,4 @@
 
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
@@ -16,15 +15,14 @@ class Character {
 }
 
 class ChillCharacter extends Character{
-  String _tip;
 
-  ChillCharacter(String name, this._tip) : super(name, "C");
+  ChillCharacter(String name) : super(name, "C");
 }
 
-  ChillCharacter RoleModel = ChillCharacter("Zee", "breathe");
+  ChillCharacter roleModel = ChillCharacter("Zee");
 
 Set<ChillCharacter> chillCharacterSet = {
-  RoleModel,
+  roleModel,
 };
 
 
@@ -59,14 +57,14 @@ class Enemy extends FightingCharacter {
 
 }
 
-Enemy Bobbert = Enemy(100, 100, 20, 1, "Sir Dr.Bobbert");
-Enemy EmoDog = Enemy(300, 300, 40, 3, "That Duggie Eugine");
-Enemy Zimma = Enemy(200, 200, 33, 2, "Zimmie 3000");
+Enemy bobbert = Enemy(100, 100, 20, 1, "Sir Dr.Bobbert");
+Enemy emoDog = Enemy(300, 300, 40, 3, "That Duggie Eugine");
+Enemy zimma = Enemy(200, 200, 33, 2, "Zimmie 3000");
 
 Set<Enemy> enemySet = {
-  Bobbert,
-  EmoDog,
-  Zimma
+  bobbert,
+  emoDog,
+  zimma
 };
 
 get getEnemySet => enemySet;

@@ -1,16 +1,13 @@
-import 'dart:collection';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_application_note/models/Token.dart';
-import 'package:flutter_application_note/widgets/listItem.dart';
-import 'package:flutter_application_note/widgets/navlink.dart';
+import 'package:flutter_application_note/widgets/list_item.dart';
+import 'package:flutter_application_note/widgets/nav_link.dart';
 import 'package:provider/provider.dart';
-import 'characters.dart';
 import 'firebase_options.dart';
 
 import 'package:flutter/material.dart';
 
-import 'colorschemes.dart';
+import 'styles/colorschemes.dart';
 import 'providers/googlesignin.dart';
 
 Future<void> main() async {
@@ -26,16 +23,16 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => CharacterPage(),
+        '/': (context) => const CharacterPage(),
       },
       theme: ThemeData(
-        colorScheme: x,
+        colorScheme: m3Dark,
 
         // textTheme: myTextTheme,
         // primarySwatch: Colors.blue,
@@ -62,24 +59,32 @@ class _CharacterPageState extends State<CharacterPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+
+            //main panel
             Expanded(
               flex: 2,
               child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: const [
                     SizedBox(height: 100, width: 100,),
                     Expanded(
                         child: ItemList()
                     ),
-                    Text("Steps Remaining : "),
                   ],
               ),
             ),
+
+            //side panel
             Expanded(
+
+              flex: 1,
               child: Column(
+
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
                     Text("nav link widgets that on tap routes to appropriate screen"),
                     NavLink(),
