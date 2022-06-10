@@ -1,6 +1,6 @@
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_application_note/widgets/list_item.dart';
+import 'package:flutter_application_note/widgets/load_bar.dart';
 import 'package:flutter_application_note/widgets/nav_link.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -18,18 +18,18 @@ Future<void> main() async {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
-    ], child: MyApp()),
+    ], child: const MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => const CharacterPage(),
+        '/': (context) => const TechScreen(),
       },
       theme: ThemeData(
         colorScheme: m3Dark,
@@ -41,47 +41,37 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CharacterPage extends StatefulWidget {
-  const CharacterPage({Key? key}) : super(key: key);
+class TechScreen extends StatefulWidget {
+  const TechScreen({Key? key}) : super(key: key);
 
   @override
-  State<CharacterPage> createState() => _CharacterPageState();
+  State<TechScreen> createState() => _TechScreenState();
 }
 
-class _CharacterPageState extends State<CharacterPage> {
+class _TechScreenState extends State<TechScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-        ),
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-
             //main panel
-            Expanded(
+            const Expanded(
               flex: 2,
-              child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    SizedBox(height: 100, width: 100,),
-                    Expanded(
-                        child: ItemList()
-                    ),
-                  ],
-              ),
-            ),
+              child: LoadBar()
+              // child: Column(
+              //     mainAxisSize: MainAxisSize.max,
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     crossAxisAlignment: CrossAxisAlignment.end,
+              //     children: const [
 
+              // ),
+            ),
             //side panel
             Expanded(
-
               flex: 1,
               child: Column(
-
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,

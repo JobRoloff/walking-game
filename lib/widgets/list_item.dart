@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 
 /////////////////////////////////////////////////////
 
-class LoadBar extends StatelessWidget {
-  const LoadBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
 
 
 
@@ -52,7 +44,7 @@ class _ItemListState extends State<ItemList> {
           children:[
             Text(e.label),
             Text(e.units),
-            const LoadBar()
+            // const LoadBar()
             ],
         )
         )
