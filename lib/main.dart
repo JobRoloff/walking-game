@@ -1,7 +1,10 @@
 
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_application_note/widgets/load_bar.dart';
-import 'package:flutter_application_note/widgets/nav_link.dart';
+import 'package:flutter_application_note/screens/data_screen.dart';
+import 'package:flutter_application_note/screens/portal_screen.dart';
+import 'package:flutter_application_note/screens/test_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -27,9 +30,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/portal',
       routes: {
-        '/': (context) => const TechScreen(),
+        '/': (context) =>  TestScreen(),
+        '/data': (context) => const DataScreen(),
+        '/portal': (context)=> PortalScreen(),
       },
       theme: ThemeData(
         colorScheme: m3Dark,
@@ -41,48 +46,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TechScreen extends StatefulWidget {
-  const TechScreen({Key? key}) : super(key: key);
 
-  @override
-  State<TechScreen> createState() => _TechScreenState();
-}
+//draw a circle
 
-class _TechScreenState extends State<TechScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            //main panel
-            const Expanded(
-              flex: 2,
-              child: LoadBar()
-              // child: Column(
-              //     mainAxisSize: MainAxisSize.max,
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     crossAxisAlignment: CrossAxisAlignment.end,
-              //     children: const [
+//draw an arc
+//draw an arc from points on the circle
+//make a method doing the above. with the input of circle size and arc length, arc height
 
-              // ),
-            ),
-            //side panel
-            Expanded(
-              flex: 1,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text("nav link widgets that on tap routes to appropriate screen"),
-                    NavLink(),
-                    NavLink(),
-                    NavLink(),
-                  ]),
-            )
-        ],
-    ),
-    );
-}}
+
