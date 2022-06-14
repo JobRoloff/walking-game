@@ -19,7 +19,6 @@ Code Labs
 <h1>Back end</h1>
 <ul>
 <li>Navigation with named routes -> https://docs.flutter.dev/cookbook/navigation/named-routes
-<li>git ignore file help -> https://dart.dev/guides/libraries/private-files
 <li>State management using proveder / consumer -> https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple
 </ul>
 
