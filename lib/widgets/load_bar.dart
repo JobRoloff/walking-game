@@ -1,60 +1,69 @@
+import 'dart:async';
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_note/screens/sci_screen.dart';
+
+import '../providers/sci_buff_provider.dart';
 
 class LoadBar extends StatefulWidget {
-  const LoadBar({Key? key}) : super(key: key);
-
+  LoadBar(){
+    context.read<SciBuffProvider>().addToLoadBarList(this);
+  }
   @override
   State<LoadBar> createState() => _LoadBarState();
 }
 
 class _LoadBarState extends State<LoadBar> {
   @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      animate();
+    });
+  }
+
+  @override
+  bool complete = false;
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      widthFactor: .1,
-      heightFactor: .9,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Color(0xFFCCCCCC),
-        ),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Units/Time'),
-              // AnimatedPositioned(
-              //   duration: Duration(seconds: 5),
-              //   child: ,
-              // ),
-              // CustomPaint(
-              //   painter: P1(),
-              //   child: const Center(
-              //     child: Text(
-              //       'Once upon a time...',
-              //       style: TextStyle(
-              //         fontSize: 40.0,
-              //         fontWeight: FontWeight.w900,
-              //         color: Color(0xFFFFFFFF),
-              //       ),
-              //     ),
-              //   ),
-              // )
-            ]),
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          ConstrainedBox(
+            // decoration: BoxDecoration(color: Colors.red),
+            constraints: BoxConstraints(maxWidth: 100),
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AnimatedContainer(
+                    duration: Duration(seconds: 3),
+                    height: complete ? constraints.maxHeight : 75,
+                    width: 300,
+                    decoration: BoxDecoration(color: Colors.blue),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 8),
+                          child: Text('lbs/s'),
+                        ),
+                        //child: wave animation
+                      ),
+                    ),
+                ],
+              );
+            }),
+          ),
+        ],
       ),
     );
   }
-}
 
-// class P1 extends CustomPainter {  @override
-//   void paint(Canvas canvas, Size size) {
-//     canvas.drawPath(
-//
-//     );
-//   }
-//
-//   @override
-//   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-//     // TODO: implement shouldRepaint
-//     throw UnimplementedError();
-//   }
-// }
+  void animate() {
+    setState(() => complete = !complete);
+  }
+}

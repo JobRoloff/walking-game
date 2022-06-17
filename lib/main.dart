@@ -2,9 +2,10 @@
 import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application_note/providers/sci_buff_provider.dart';
 import 'package:flutter_application_note/screens/data_screen.dart';
 import 'package:flutter_application_note/screens/portal_screen.dart';
-import 'package:flutter_application_note/screens/test_screen.dart';
+import 'package:flutter_application_note/screens/sci_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -18,8 +19,10 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => SciBuffProvider()),
       ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
     ], child: const MyApp()),
   );
@@ -30,11 +33,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/portal',
+      initialRoute: '/sci',
       routes: {
-        '/': (context) =>  TestScreen(),
         '/data': (context) => const DataScreen(),
         '/portal': (context)=> PortalScreen(),
+        '/sci': (context) => const SciScreen(),
       },
       theme: ThemeData(
         colorScheme: m3Dark,

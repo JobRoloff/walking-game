@@ -9,63 +9,57 @@ class PortalScreen extends StatefulWidget {
   @override
   State<PortalScreen> createState() => _PortalScreenState();
 }
-
 class _PortalScreenState extends State<PortalScreen> {
   var gridList = <GridBox>[];
-
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 25; i++) {
       gridList.add(GridBox());
-    }
+    };
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      return Container(
-        decoration: BoxDecoration(color: Color(getToken("surface"))),
-        child: ClipOval(
-          clipBehavior: Clip.antiAlias,
-          clipper: MyClipper(
-            offSetX: MediaQuery.of(context).size.width / 2,
-            offSetY: MediaQuery.of(context).size.height / 2,
-            radius: MediaQuery.of(context).size.width / 4,
-          ),
+    return Container(
+      decoration: BoxDecoration(color: Color(getToken("surface"))),
+      child: ClipOval(
+        clipBehavior: Clip.antiAlias,
+        clipper: MyClipper(
+          offSetX: MediaQuery.of(context).size.width / 2,
+          offSetY: MediaQuery.of(context).size.height / 2,
+          radius: MediaQuery.of(context).size.width / 4,
+        ),
         child: Stack(
           children: [
             Center(
               child: SizedBox(
-                height: MediaQuery.of(context).size.width,
-                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width/2,
+                width: MediaQuery.of(context).size.width/2,
                 child: Center(
                   child: GridView.count(
                     shrinkWrap: true,
                     crossAxisCount: 5,
                     children: gridList,
                   ),
-                  ),
                 ),
               ),
+            ),
             Center(
               child: Material(
                 color: Color(getToken("primary")).withOpacity(.4),
                 child: InkWell(
                   onTap: (){},
-
-
-
+                  ),
+                ),
               ),
-              ),
-            ),
+            // ),
           ],
         ),
-        ),
-      );
-    });
+      ),
+    );
   }
+
 }
 
 class MyClipper extends CustomClipper<Rect> {
@@ -76,7 +70,6 @@ class MyClipper extends CustomClipper<Rect> {
   getClip(Size size) {
     return Rect.fromCircle(center: Offset(offSetX, offSetY), radius: radius);
   }
-
   @override
   bool shouldReclip(covariant CustomClipper oldClipper) => false;
 }
@@ -87,7 +80,6 @@ class GridBox extends StatefulWidget {
     Color(getToken("surface")),
     Color(getToken("on-surface"))
   ];
-
   @override
   State<GridBox> createState() => _GridBoxState();
 }
@@ -130,23 +122,56 @@ class RipplePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     canvas.drawCircle(Offset(offSetX, offSetY), radius, ripplePaint);
   }
-
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
+class PhysDev {
+  static final deviceOptions = <PhysDev>[];
+
+  final int breakPoint;
+  String? portraitSize; //Handset/Tablet Portrait Size
+  String? landscapeSize; //Handset/Tablet Landscape Size
+  final String windowSize;
+  final int numCols, gutterSize;
+
+  PhysDev(
+      {required this.breakPoint,
+      this.portraitSize,
+      this.landscapeSize,
+      required this.windowSize,
+      required this.numCols,
+      required this.gutterSize}) {
+    deviceOptions.add(this);
+  }
+  ///device size methods
+  static bool useSingleColLayout(BuildContext context){
+    if (MediaQuery.of(context).size.shortestSide < 600) {
+      return true;
+    }
+    else {
+      return false;
+    };
+  }
+  static void createDeviceOptions() {
+    PhysDev(breakPoint: 0, portraitSize: "small-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
+    PhysDev(breakPoint: 360, portraitSize: "medium-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
+    PhysDev(breakPoint: 400, portraitSize: "large-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
+    PhysDev(breakPoint: 480, portraitSize: "large-handset", landscapeSize: "small-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
+    PhysDev(breakPoint: 600, portraitSize: "small-tablet", landscapeSize: "medium-handset", windowSize: "small", numCols: 8, gutterSize: 24);//*
+    PhysDev(breakPoint: 720, portraitSize: "large-tablet", landscapeSize: "large-handset", windowSize: "small", numCols: 8, gutterSize: 24);//*
+    PhysDev(breakPoint: 840, portraitSize: "large-tablet", landscapeSize: "large-handset", windowSize: "small", numCols: 12, gutterSize: 24);//*
+    PhysDev(breakPoint: 960, landscapeSize: "small-tablet", windowSize: "small", numCols: 12, gutterSize: 24);
+    PhysDev(breakPoint: 1024, landscapeSize: "large-tablet", windowSize: "medium", numCols: 12, gutterSize: 24);
+    PhysDev(breakPoint: 1280, landscapeSize: "large-tablet", windowSize: "medium", numCols: 12, gutterSize: 24);//**
+    PhysDev(breakPoint: 1440, windowSize: "large", numCols: 12, gutterSize: 24);//**
+    PhysDev(breakPoint: 1600, windowSize: "large", numCols: 12, gutterSize: 24);//**
+    PhysDev(breakPoint: 1920, windowSize: "xlarge", numCols: 12, gutterSize: 24);//**
+//* 16dp when the smallest width of the device is <600
 //
-// String getDeviceSize(BuildContext context){
-//   ///480, 600, 840, 960, 1280, 1440, and 1600dp.
-//   final intSizes = <int>[480, 600, 840, 960, 1280, 1440, 1600];
-//   final stringSizes = <String>["xsmall", "small-handset", "medium","large","xlarge"];
-//   final mappedSizes = <Map<String, int>>[];
-//   intSizes.map( (e) {
-//     ///key : element value from the list
-//     ///value(s) : Handset/ Tablet size category, Window Size Category, number of Columns, size of gutter in dp units
-//     // mappedSizes.add(e.toString());
-//   } );
-//   String size;
-//   ///iterate through list and return the index of the element that returns ture (the input's size is smaller than the element's value)
-//   // return size;
-// }
+// ** Desktop breakpoints are 16dp below the listed values to accommodate variations in browser chrome.
+
+  }
+
+
+}
