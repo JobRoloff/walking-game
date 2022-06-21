@@ -9,6 +9,7 @@ class PortalScreen extends StatefulWidget {
   @override
   State<PortalScreen> createState() => _PortalScreenState();
 }
+
 class _PortalScreenState extends State<PortalScreen> {
   var gridList = <GridBox>[];
   @override
@@ -34,8 +35,8 @@ class _PortalScreenState extends State<PortalScreen> {
           children: [
             Center(
               child: SizedBox(
-                height: MediaQuery.of(context).size.width/2,
-                width: MediaQuery.of(context).size.width/2,
+                height: MediaQuery.of(context).size.width / 2,
+                width: MediaQuery.of(context).size.width / 2,
                 child: Center(
                   child: GridView.count(
                     shrinkWrap: true,
@@ -49,17 +50,15 @@ class _PortalScreenState extends State<PortalScreen> {
               child: Material(
                 color: Color(getToken("primary")).withOpacity(.4),
                 child: InkWell(
-                  onTap: (){},
-                  ),
+                  onTap: () {},
                 ),
               ),
-            // ),
+            ),
           ],
         ),
       ),
     );
   }
-
 }
 
 class MyClipper extends CustomClipper<Rect> {
@@ -70,6 +69,7 @@ class MyClipper extends CustomClipper<Rect> {
   getClip(Size size) {
     return Rect.fromCircle(center: Offset(offSetX, offSetY), radius: radius);
   }
+
   @override
   bool shouldReclip(covariant CustomClipper oldClipper) => false;
 }
@@ -122,6 +122,7 @@ class RipplePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     canvas.drawCircle(Offset(offSetX, offSetY), radius, ripplePaint);
   }
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
@@ -144,34 +145,99 @@ class PhysDev {
       required this.gutterSize}) {
     deviceOptions.add(this);
   }
+
   ///device size methods
-  static bool useSingleColLayout(BuildContext context){
+  static bool useSingleColLayout(BuildContext context) {
     if (MediaQuery.of(context).size.shortestSide < 600) {
       return true;
-    }
-    else {
+    } else {
       return false;
-    };
+    }
+    ;
   }
+
   static void createDeviceOptions() {
-    PhysDev(breakPoint: 0, portraitSize: "small-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
-    PhysDev(breakPoint: 360, portraitSize: "medium-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
-    PhysDev(breakPoint: 400, portraitSize: "large-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
-    PhysDev(breakPoint: 480, portraitSize: "large-handset", landscapeSize: "small-handset", windowSize: "xsmall", numCols: 4, gutterSize: 16);
-    PhysDev(breakPoint: 600, portraitSize: "small-tablet", landscapeSize: "medium-handset", windowSize: "small", numCols: 8, gutterSize: 24);//*
-    PhysDev(breakPoint: 720, portraitSize: "large-tablet", landscapeSize: "large-handset", windowSize: "small", numCols: 8, gutterSize: 24);//*
-    PhysDev(breakPoint: 840, portraitSize: "large-tablet", landscapeSize: "large-handset", windowSize: "small", numCols: 12, gutterSize: 24);//*
-    PhysDev(breakPoint: 960, landscapeSize: "small-tablet", windowSize: "small", numCols: 12, gutterSize: 24);
-    PhysDev(breakPoint: 1024, landscapeSize: "large-tablet", windowSize: "medium", numCols: 12, gutterSize: 24);
-    PhysDev(breakPoint: 1280, landscapeSize: "large-tablet", windowSize: "medium", numCols: 12, gutterSize: 24);//**
-    PhysDev(breakPoint: 1440, windowSize: "large", numCols: 12, gutterSize: 24);//**
-    PhysDev(breakPoint: 1600, windowSize: "large", numCols: 12, gutterSize: 24);//**
-    PhysDev(breakPoint: 1920, windowSize: "xlarge", numCols: 12, gutterSize: 24);//**
+    PhysDev(
+        breakPoint: 0,
+        portraitSize: "small-handset",
+        windowSize: "xsmall",
+        numCols: 4,
+        gutterSize: 16);
+    PhysDev(
+        breakPoint: 360,
+        portraitSize: "medium-handset",
+        windowSize: "xsmall",
+        numCols: 4,
+        gutterSize: 16);
+    PhysDev(
+        breakPoint: 400,
+        portraitSize: "large-handset",
+        windowSize: "xsmall",
+        numCols: 4,
+        gutterSize: 16);
+    PhysDev(
+        breakPoint: 480,
+        portraitSize: "large-handset",
+        landscapeSize: "small-handset",
+        windowSize: "xsmall",
+        numCols: 4,
+        gutterSize: 16);
+    PhysDev(
+        breakPoint: 600,
+        portraitSize: "small-tablet",
+        landscapeSize: "medium-handset",
+        windowSize: "small",
+        numCols: 8,
+        gutterSize: 24); //*
+    PhysDev(
+        breakPoint: 720,
+        portraitSize: "large-tablet",
+        landscapeSize: "large-handset",
+        windowSize: "small",
+        numCols: 8,
+        gutterSize: 24); //*
+    PhysDev(
+        breakPoint: 840,
+        portraitSize: "large-tablet",
+        landscapeSize: "large-handset",
+        windowSize: "small",
+        numCols: 12,
+        gutterSize: 24); //*
+    PhysDev(
+        breakPoint: 960,
+        landscapeSize: "small-tablet",
+        windowSize: "small",
+        numCols: 12,
+        gutterSize: 24);
+    PhysDev(
+        breakPoint: 1024,
+        landscapeSize: "large-tablet",
+        windowSize: "medium",
+        numCols: 12,
+        gutterSize: 24);
+    PhysDev(
+        breakPoint: 1280,
+        landscapeSize: "large-tablet",
+        windowSize: "medium",
+        numCols: 12,
+        gutterSize: 24); //**
+    PhysDev(
+        breakPoint: 1440,
+        windowSize: "large",
+        numCols: 12,
+        gutterSize: 24); //**
+    PhysDev(
+        breakPoint: 1600,
+        windowSize: "large",
+        numCols: 12,
+        gutterSize: 24); //**
+    PhysDev(
+        breakPoint: 1920,
+        windowSize: "xlarge",
+        numCols: 12,
+        gutterSize: 24); //**
 //* 16dp when the smallest width of the device is <600
 //
 // ** Desktop breakpoints are 16dp below the listed values to accommodate variations in browser chrome.
-
   }
-
-
 }

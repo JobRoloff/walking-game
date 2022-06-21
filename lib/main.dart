@@ -6,6 +6,7 @@ import 'package:flutter_application_note/providers/sci_buff_provider.dart';
 import 'package:flutter_application_note/screens/data_screen.dart';
 import 'package:flutter_application_note/screens/portal_screen.dart';
 import 'package:flutter_application_note/screens/sci_screen.dart';
+import 'package:flutter_application_note/screens/user_settings_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -24,6 +25,7 @@ Future<void> main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => SciBuffProvider()),
       ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
+
     ], child: const MyApp()),
   );
 }
@@ -33,27 +35,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/sci',
+      initialRoute: '/user_settings',
       routes: {
         '/data': (context) => const DataScreen(),
         '/portal': (context)=> PortalScreen(),
         '/sci': (context) => const SciScreen(),
+        '/user_settings': (context) => UserSettingsScreen(),
       },
       theme: ThemeData(
         colorScheme: m3Dark,
-
-        // textTheme: myTextTheme,
-        // primarySwatch: Colors.blue,
       ),
     );
   }
 }
-
-
-//draw a circle
-
-//draw an arc
-//draw an arc from points on the circle
-//make a method doing the above. with the input of circle size and arc length, arc height
-
 

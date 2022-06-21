@@ -1,24 +1,25 @@
 import 'dart:async';
-import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_note/models/token.dart';
 import 'package:flutter_application_note/screens/sci_screen.dart';
 
 import '../providers/sci_buff_provider.dart';
 
 class LoadBar extends StatefulWidget {
-  LoadBar(){
-    context.read<SciBuffProvider>().addToLoadBarList(this);
+  LoadBar({required context}){
+    ()=> context.read<SciBuffProvider>().addToLoadBarList(this);
   }
   @override
   State<LoadBar> createState() => _LoadBarState();
+
 }
 
 class _LoadBarState extends State<LoadBar> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 5), (timer) {
+    Timer.periodic(Duration(seconds: 10), (timer) {
       animate();
     });
   }
@@ -44,7 +45,7 @@ class _LoadBarState extends State<LoadBar> {
                     duration: Duration(seconds: 3),
                     height: complete ? constraints.maxHeight : 75,
                     width: 300,
-                    decoration: BoxDecoration(color: Colors.blue),
+                    decoration: BoxDecoration(color: Color(getToken("on-primary"))),
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Padding(

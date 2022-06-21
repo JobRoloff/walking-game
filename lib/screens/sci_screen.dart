@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_application_note/models/token.dart';
 import 'package:flutter_application_note/providers/sci_buff_provider.dart';
 import 'package:provider/provider.dart';
@@ -26,70 +27,58 @@ class SciScreen extends StatefulWidget {
 }
 
 class _SciScreenState extends State<SciScreen> {
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        return Row(
-          children: [
-            //main panel
-            Container(
-              width: constraints.maxWidth * .66,
-              child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Color((getToken("surface"))),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Container(
-                            decoration: BoxDecoration(color: Colors.purple),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <LoadBar>[
-                                ...context.watch<SciBuffProvider>().loadBarList
-                              ],
-                            ),
-                          ),
+        return ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 70),
+          child: Row(
+            children: [
+              //main panel
+              SizedBox(
+                width: constraints.maxWidth * .66,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(0),
+                      child: Container(
+                        height: constraints.maxHeight / 2,
+                        width: constraints.maxWidth,
+                        decoration: BoxDecoration(color: Colors.purple),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <LoadBar>[
+                            ...context.watch<SciBuffProvider>().loadBarList
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration:
-                                    BoxDecoration(color: Colors.blueGrey),
-                              ),
-                            ]),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(0),
+                      child: Container(
+                        height: constraints.maxHeight / 2,
+                        width: constraints.maxWidth,
+                        decoration: BoxDecoration(color: Colors.blueGrey),
                       ),
-                    ],
-                  ),
-                );
-              }),
-            ),
-            //side panel
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(color: Color(getToken("surface"))),
-                child: Column(children: [
-                  Container(
-                    child: Text("btn1"),
-                  ),
-                ]),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              //side panel
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(color: Color(getToken("surface"))),
+                  child: Column(children: [
+                    Container(
+                      child: Text("btn1"),
+                    ),
+                  ]),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );

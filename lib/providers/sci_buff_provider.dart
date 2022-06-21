@@ -10,7 +10,7 @@ final loadBarList = <LoadBar>[];
 void addToLoadBarList(LoadBar newBar) {
   loadBarList.add(newBar);
   notifyListeners();
-};
+}
 //dec list
 void decLoadBarList() => loadBarList.removeLast();
 
