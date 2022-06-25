@@ -1,23 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_note/models/token.dart';
-import 'package:flutter_application_note/providers/sci_buff_provider.dart';
-import 'package:provider/provider.dart';
-
-import '../widgets/load_bar.dart';
-
-///side panel if media q is large enough.. else single col layout
-
-///multi col layout:
-///
-///2:1 panel ratio
-///
-///main - view loadbars
-///
-///side - navigational
-///
-
-//this is where Media query dictates which widget to apply
+import 'package:flutter_application_note/widgets/nav_link.dart';
+import 'package:flutter_application_note/widgets/side_panel.dart';
 
 class SciScreen extends StatefulWidget {
   const SciScreen({Key? key}) : super(key: key);
@@ -29,60 +14,66 @@ class SciScreen extends StatefulWidget {
 class _SciScreenState extends State<SciScreen> {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: 70),
-          child: Row(
-            children: [
-              //main panel
-              SizedBox(
-                width: constraints.maxWidth * .66,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(0),
-                      child: Container(
-                        height: constraints.maxHeight / 2,
-                        width: constraints.maxWidth,
-                        decoration: BoxDecoration(color: Colors.purple),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <LoadBar>[
-                            ...context.watch<SciBuffProvider>().loadBarList
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(0),
-                      child: Container(
-                        height: constraints.maxHeight / 2,
-                        width: constraints.maxWidth,
-                        decoration: BoxDecoration(color: Colors.blueGrey),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              //side panel
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(color: Color(getToken("surface"))),
-                  child: Column(children: [
-                    Container(
-                      child: Text("btn1"),
-                    ),
-                  ]),
-                ),
-              ),
-            ],
+    return Scaffold(
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          //main panel
+          Expanded(
+            flex: 4,
+            child: ScenarioAlertDialog(),
           ),
-        );
-      },
+          //   ),
+          // ),
+          //side panel
+          const SidePanel(
+            navLink1: NavLink(
+              label: 'Portal',
+              route: '/portal',
+            ),
+            navLink2: NavLink(
+              label: "Inventory",
+              route: "/inventory",
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-///single col layout
+class ScenarioAlertDialog extends StatelessWidget {
+  //access the users data
+  const ScenarioAlertDialog({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text("title"),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: [
+            Text("1"),
+            Text("2"),
+            Text("3"),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(onPressed: () {}, child: Text("b1")),
+        TextButton(onPressed: () {}, child: Text("b2")),
+      ],
+    );
+  }
+}
+/**
+ * final String title;
+    final String outcomeCategory;
+    final String messageBody;
+    final String outcomeMessageBody;
+    final String cTA1;
+    final String cTA2;
+ */

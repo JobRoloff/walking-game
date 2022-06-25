@@ -80,6 +80,7 @@ class GridBox extends StatefulWidget {
     Color(getToken("surface")),
     Color(getToken("on-surface"))
   ];
+  var myTimer;
   @override
   State<GridBox> createState() => _GridBoxState();
 }
@@ -87,16 +88,20 @@ class GridBox extends StatefulWidget {
 class _GridBoxState extends State<GridBox> {
   bool currentColor = true;
   var rnd = Random().nextInt(9) + 1;
+  late Timer myTimer;
   @override
   void initState() {
-    super.initState();
-    Timer.periodic(Duration(seconds: rnd), (Timer t) {
+    myTimer = Timer.periodic(Duration(seconds: rnd), (Timer timer) {
       setState(() {
         currentColor = !currentColor;
       });
     });
   }
-
+  @override
+  void dispose(){
+    myTimer.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -112,7 +117,6 @@ class _GridBoxState extends State<GridBox> {
   }
 }
 
-///will tis paint in front of the boxes???
 class RipplePainter extends CustomPainter {
   final double offSetX, offSetY, radius;
   final ripplePaint = Paint()..color = Colors.white;
@@ -138,11 +142,11 @@ class PhysDev {
 
   PhysDev(
       {required this.breakPoint,
-      this.portraitSize,
-      this.landscapeSize,
-      required this.windowSize,
-      required this.numCols,
-      required this.gutterSize}) {
+        this.portraitSize,
+        this.landscapeSize,
+        required this.windowSize,
+        required this.numCols,
+        required this.gutterSize}) {
     deviceOptions.add(this);
   }
 
@@ -153,7 +157,7 @@ class PhysDev {
     } else {
       return false;
     }
-    ;
+
   }
 
   static void createDeviceOptions() {
