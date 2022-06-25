@@ -41,7 +41,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                         child: Container(
                           height: 200,
                           decoration: BoxDecoration(
-                              color: Color(getToken("secondary-container"))),
+                              color: Colors.orange,),
                           child: Center(
                             child: Text("Your settings"),
                           ),
