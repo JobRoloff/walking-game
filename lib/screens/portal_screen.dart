@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_note/models/token.dart';
+import 'package:flutter_application_note/widgets/side_panel.dart';
 
 class PortalScreen extends StatefulWidget {
   PortalScreen({Key? key}) : super(key: key);
@@ -24,39 +25,41 @@ class _PortalScreenState extends State<PortalScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Color(getToken("surface"))),
-      child: ClipOval(
-        clipBehavior: Clip.antiAlias,
-        clipper: MyClipper(
-          offSetX: MediaQuery.of(context).size.width / 2,
-          offSetY: MediaQuery.of(context).size.height / 2,
-          radius: MediaQuery.of(context).size.width / 4,
-        ),
-        child: Stack(
-          children: [
-            Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.width / 2,
-                width: MediaQuery.of(context).size.width / 2,
-                child: Center(
-                  child: GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 5,
-                    children: gridList,
+      child:
+        ClipOval(
+            clipBehavior: Clip.antiAlias,
+            clipper: MyClipper(
+              offSetX: MediaQuery.of(context).size.width / 2,
+              offSetY: MediaQuery.of(context).size.height / 2,
+              radius: MediaQuery.of(context).size.width / 4,
+            ),
+            child: Stack(
+              children: [
+                Center(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.width / 2,
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Center(
+                      child: GridView.count(
+                        shrinkWrap: true,
+                        crossAxisCount: 5,
+                        children: gridList,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Center(
-              child: Material(
-                color: Color(getToken("primary")).withOpacity(.4),
-                child: InkWell(
-                  onTap: () {},
+                Center(
+                  child: Material(
+                    color: Color(getToken("primary")).withOpacity(.4),
+                    child: InkWell(
+                      onTap: () {},
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
         ),
-      ),
+
     );
   }
 }

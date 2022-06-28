@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'nav_link.dart';
 class SidePanel extends StatefulWidget {
-  final NavLink navLink1;
-  final NavLink navLink2;
-  const SidePanel({required this.navLink1, required this.navLink2, Key? key}) : super(key: key);
+
+  const SidePanel({Key? key}) : super(key: key);
 
   @override
   State<SidePanel> createState() => _SidePanelState();
@@ -26,8 +25,9 @@ class _SidePanelState extends State<SidePanel> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  NavLink(label: widget.navLink1.label, route: widget.navLink1.route),
-                  NavLink(label: widget.navLink2.label, route: widget.navLink2.route),
+                  NavLink(label: "Portal", route: "/portal"),
+                  NavLink(label: "Inventory", route: "/inventory"),
+                  NavLink(label: "Settings", route: "/user_settings"),
                 ],
               ),
             ),

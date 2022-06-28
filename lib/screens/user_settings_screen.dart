@@ -1,21 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_note/models/token.dart';
+import 'package:flutter_application_note/widgets/side_panel.dart';
 
-import '../models/user.dart';
-
-/**
- * UI for users to EDIT their profile
- *
- * Expanded box containing:
- *
- * Immutabel fields:
- * - Label -> Character type
- * - Label -> Number of Portals Discovered
- *
- * Mutable fields:
- * - Forum Field -> Character Name
- * - Switch -> light preference
- */
 
 class UserSettingsScreen extends StatefulWidget {
   @override
@@ -28,44 +14,61 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
     return Scaffold(body: LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Container(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Stack(
-                  children: [
-                    Center(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxWidth: 1000,
-                        ),
-                        child: Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                              color: Colors.orange,),
-                          child: Center(
-                            child: Text("Your settings"),
+          child: Row(children: [
+            Expanded(
+              flex: 4,
+              child:
+            Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Stack(
+                    children: [
+                      Center(
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxWidth: 1000,
+                          ),
+                          child: Container(
+                            height: 200,
+                            margin: EdgeInsets.all(50),
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                            ),
+                            child: Center(
+                              child: Text("Your settings"),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: CircleAvatar(
-                        radius: 50,
+                      Center(
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(100)),
+                            color: Color(
+                              getToken("on-surface"),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Form(
-                  //allows multiple children
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        initialValue: "text form field 1",
-                      )
                     ],
                   ),
-                ),
-              ]),
+                  Form(
+                    //allows multiple children
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          initialValue: "text form field 1",
+                        )
+                      ],
+                    ),
+                  ),
+                ]),
+            ),
+            SidePanel()
+          ],)
+
         );
       },
     ));
