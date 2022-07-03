@@ -1,59 +1,38 @@
 
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
+Future<UserCredential> signInWithGoogleWeb() async {
+  GoogleAuthProvider googleProvider = GoogleAuthProvider();
+  GoogleSignIn googleSignIn = GoogleSignIn();
 
-class SignInProvider with ChangeNotifier {
 
-  bool isSignedIn = false;
+  googleSignIn.signIn();
+  return await FirebaseAuth.instance.signInWithPopup(googleProvider);
 
-  void changeSignInStatus() {
-    isSignedIn == !isSignedIn;
-    notifyListeners();
-  }
-
-  Future<UserCredential> signInWithGoogleMobile() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    var x = await FirebaseAuth.instance.signInWithCredential(credential);
-    changeSignInStatus();
-    return x;
-  }
-
-  Future signInWithGoogleWeb() async {
-      // Create a new provider
-      GoogleAuthProvider googleProvider = GoogleAuthProvider();
-
-      googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-      googleProvider.setCustomParameters({
-        'login_hint': 'user@example.com'
-      });
-      return await FirebaseAuth.instance.signInWithPopup(googleProvider);
-      // changeSignInStatus();
-      // Once signed in, return the UserCredential
-
-      // Or use signInWithRedirect
-      // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
-    }
-  Future<void> signInWithGoogle() async{
-    try{
-      GoogleSignIn flow = GoogleSignIn();
-      await flow.signIn();
-    }catch(error){
-      print(error.toString());
-    }
-
-  }
-
+  // Or use signInWithRedirect
+  // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 }
-/**
- * create firebase auth object
- * create a current user
- * pass the current user into the firebase auth object
- * return the login status
- */
+
+Future <bool> isloggedIn() async{
+  bool b = false;
+   await FirebaseAuth.instance
+      .userChanges()
+      .listen((User? user) {
+    if (user == null) {
+    } else {
+      b = true;
+    }
+  });
+  return b;
+}
+
+Future <void> signOut() async {
+
+  GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+  GoogleSignIn googleSignIn = GoogleSignIn();
+  print("running sign out fxn: " + googleSignIn.currentUser.toString());
+
+  googleSignIn.signOut();
+  await FirebaseAuth.instance.signOut();
+}

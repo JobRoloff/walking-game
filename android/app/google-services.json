@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "961937609113",
-    "project_id": "directed-mender-345216",
-    "storage_bucket": "directed-mender-345216.appspot.com"
+    "project_number": "579668766530",
+    "project_id": "shifty99",
+    "storage_bucket": "shifty99.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:961937609113:android:f5a1acf31a02b21b3d0308",
+        "mobilesdk_app_id": "1:579668766530:android:1fe907aad2e699511c22db",
         "android_client_info": {
           "package_name": "com.example.flutter_application_note"
         }
       },
       "oauth_client": [
         {
-          "client_id": "961937609113-k8he34h8afjjt9tdtdc90g1b1sd127e6.apps.googleusercontent.com",
+          "client_id": "579668766530-nm9m9frpe927qvorjhmg7n1li2jr2717.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC0vbA8BZszw0CSNPwmXzD6Jb9v65zKrLE"
+          "current_key": "AIzaSyBY37oh9O2Ib8QUM32Bx3K_nPcm2kaWjD4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "961937609113-k8he34h8afjjt9tdtdc90g1b1sd127e6.apps.googleusercontent.com",
+              "client_id": "579668766530-nm9m9frpe927qvorjhmg7n1li2jr2717.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "961937609113-4588vk6e2uu51km4m33m0seqdvft84jd.apps.googleusercontent.com",
+              "client_id": "579668766530-eesmonsa766ki1umimqbc9nvkumlp6eb.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "CFBundleIdentifier"
+                "bundle_id": "com.example.flutterApplicationNote"
               }
             }
           ]

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_note/models/token.dart';
 import 'package:flutter_application_note/providers/sign_in_provider.dart';
-import 'package:provider/provider.dart';
+
 
 class PreLogInScreen extends StatefulWidget {
   const PreLogInScreen({Key? key}) : super(key: key);
@@ -42,8 +42,9 @@ class _PreLogInScreenState extends State<PreLogInScreen> {
                     padding: EdgeInsets.only(right: 10),
                     child: TextButton(
                       child: Text("login"),
-                      onPressed: () => context.read<SignInProvider>().signInWithGoogle()
-
+                      onPressed: () {
+                        signInWithGoogleWeb();
+                      }
                     ),
                   ),
                 ],

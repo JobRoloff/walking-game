@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_note/models/token.dart';
 import 'package:flutter_application_note/widgets/side_panel.dart';
 
+import '../widgets/sign_out_btn.dart';
+
 
 class UserSettingsScreen extends StatefulWidget {
   @override
@@ -54,16 +56,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                       ),
                     ],
                   ),
-                  Form(
-                    //allows multiple children
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          initialValue: "text form field 1",
-                        )
-                      ],
-                    ),
-                  ),
+                  SignOutButton(),
                 ]),
             ),
             SidePanel()
